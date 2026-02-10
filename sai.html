@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:"Segoe UI",sans-serif;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3);
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* Sections */
+.section{display:none;padding:40px;}
+.active{display:block;}
+
+button{
+    background:white;
+    color:#ff4f81;
+    border:none;
+    padding:12px 20px;
+    margin:12px;
+    font-size:18px;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+/* Floating hearts */
+.heart{
+    position:fixed;
+    bottom:-20px;
+    font-size:20px;
+    animation:floatUp 6s linear infinite;
+}
+@keyframes floatUp{
+    from{transform:translateY(0);opacity:1;}
+    to{transform:translateY(-110vh);opacity:0;}
+}
+
+/* Gallery */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:18px;
+    max-width:900px;
+    margin:auto;
+}
+.gallery img{
+    width:100%;
+    height:220px;
+    object-fit:contain;
+    background:white;
+    border-radius:18px;
+}
+
+/* Confetti */
+.confetti{
+    position:fixed;
+    width:8px;
+    height:8px;
+    top:-10px;
+    animation:fall 3s linear forwards;
+}
+@keyframes fall{
+    to{transform:translateY(110vh) rotate(720deg);}
+}
+
+.caption{
+    font-size:20px;
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD -->
+<div id="passwordPage" class="section active">
+<h1>🔒 Secret Entry 🧿</h1>
+<input id="passInput" type="password">
+<br><br>
+<button onclick="enter()">Enter</button>
+<p id="wrong"></p>
+</div>
+
+<!-- MAIN -->
+<div id="mainPage" class="section">
+<h1>I'm Sorry ❤️</h1>
+
+<p style="font-size:20px;line-height:1.7;">
+I never meant to hurt you 💔<br>
+You mean everything to me 🥺❤️<br><br>
+
+Forget about Valentine 💞<br><br>
+
+✨ Will you be my — ✨<br><br>
+💍 Husband forever<br>
+🍜 Hungry partner<br>
+❤️ Lifelong partner<br>
+😜 Tantrum-taker always
+</p>
+
+<button onclick="yes()">YES ❤️</button>
+<button id="noBtn" onmouseover="move()">NO 😜</button>
+</div>
+
+<!-- GALLERY -->
+<div id="galleryPage" class="section">
+<h1>Our Memories 📸(Moments we lived, laughs we shared,  
+memories protected from every evil eye 🧿
+More to go , more to make sunadu babudu </h1>
+
+<div class="gallery">
+<img src="srisa.jpeg">
+<img src="sai.jpeg">
+<img src="sri.jpeg">
+<img src="saisri1.jpeg">
+<img src="sai1.jpeg">
+<img src="sri1.jpeg">
+<img src="srisai.jpeg">
+<img src="ruchi.jpeg">
+</div>
+
+<button onclick="quiz()">Next 💕</button>
+</div>
+
+<!-- LOVE QUIZ -->
+<div id="quizPage" class="section">
+<h1>Love Quiz 💘</h1>
+
+<p>Who loves you the most?</p>
+
+<button onclick="answer1()">You ❤️</button>
+<button onclick="answer2()">Me ❤️</button>
+<button onclick="answer3()">Both Forever ❤️</button>
+
+<p id="quizText" class="caption"></p>
+
+<button onclick="proposal()">Continue 💖</button>
+</div>
+
+<!-- PROPOSAL -->
+<div id="proposalPage" class="section">
+<h1>💍 One Question...</h1>
+<p style="font-size:22px;">Will you stay with me forever?</p>
+<button onclick="final()">Always ❤️</button>
+</div>
+
+<!-- FINAL -->
+<div id="finalPage" class="section">
+<h1>I Love You Forever ❤️🧿</h1>
+</div>
+
+<script>
+
+/* Floating hearts */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💗";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},500);
+
+/* Page control */
+function show(id){
+document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"))
+document.getElementById(id).classList.add("active")
+}
+
+function enter(){
+if(passInput.value==="Srisai"){
+show("mainPage")
+}else{
+wrong.innerText="Wrong password 😢"
+}
+}
+
+function move(){
+noBtn.style.position="absolute";
+noBtn.style.left=Math.random()*80+"%";
+noBtn.style.top=Math.random()*80+"%";
+}
+
+/* YES confetti */
+function yes(){
+for(let i=0;i<100;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"vw";
+c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),3000);
+}
+show("galleryPage")
+}
+
+/* QUIZ CAPTIONS — DIFFERENT */
+function answer1(){
+quizText.innerText="Aww 😜 You love me… but I love you more ❤️"
+}
+function answer2(){
+quizText.innerText="Correct 😌 I really do love you the most ❤️"
+}
+function answer3(){
+quizText.innerText="Best answer 🥺 Two hearts loving each other forever ❤️"
+}
+
+function quiz(){
+show("quizPage")
+}
+
+function proposal(){
+show("proposalPage")
+}
+
+function final(){
+show("finalPage")
+}
+
+</script>
+</body>
+</html>
+
